@@ -1,48 +1,75 @@
-# 🌦️ Seattle Weather Prediction
+# 🌦️ Seattle Weather Prediction using Machine Learning
 
-A machine-learning web application that predicts a weather category from weather measurements using a trained model and an interactive Streamlit interface.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-Data%20Science-58A6FF?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/Machine%20Learning-Project-58A6FF?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Streamlit-Deployed-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" />
+</p>
+
+## 📌 Project Overview
+
+This project uses **Machine Learning** to predict a weather category from weather measurements. It includes data cleaning, exploratory data analysis (EDA), feature selection, model training, and a Streamlit web application for interactive predictions.
 
 ## 🚀 Live Demo
 
-The app is deployed on **Streamlit Community Cloud**. Add the public app URL here once copied from the deployed app's Share menu.
+The app is deployed on Streamlit Community Cloud.
 
-## ✨ Features
+👉 **[Open Seattle Weather Prediction App](#live-demo-url)**
 
-- Predicts a weather category from user-entered measurements
-- Takes precipitation, maximum temperature, minimum temperature, wind speed, and date as inputs
-- Extracts year, month, and day from the selected date
-- Uses a saved, trained machine-learning model for prediction
-- Provides a simple web interface built with Streamlit
+> Replace this placeholder with the public Streamlit app URL.
 
-> **Note:** This project predicts from the inputs provided by the user. It does not fetch live weather data or provide a real-time forecast.
+## 🎯 Project Objectives
 
-## 🧰 Tech Stack
+- Explore and prepare the Seattle weather dataset
+- Understand patterns in weather measurements through visualizations
+- Use selected features to train a machine-learning model
+- Predict a weather category from user-entered values
+- Make the trained model accessible through a simple web app
 
-- **Python** — application logic
-- **Pandas** — input data preparation
-- **Scikit-learn** — machine-learning model support
-- **Joblib** — loading the saved model
-- **Streamlit** — interactive web application
+## 🚀 Project Workflow
 
-## 📁 Project Structure
+1. 📥 Dataset collection
+2. 🧹 Data cleaning and preprocessing
+3. 📊 Exploratory Data Analysis (EDA)
+4. 🎯 Feature selection
+5. 🤖 Model training and selection
+6. 📈 Model evaluation
+7. 🌦️ Streamlit app development and deployment
 
-```text
-Weather-Prediction/
-├── app.py
-├── weather_prediction_model.pkl
-├── requirements.txt
-├── cleaning.ipynb
-├── EDA.ipynb
-├── feature_selection.ipynb
-├── model_selection.ipynb
-└── seattle-weather.csv
-```
+## ✨ Key Features
 
-*Some notebook or dataset files may be present depending on the files committed to the repository.*
+- Enter precipitation, maximum temperature, minimum temperature, and wind speed
+- Select a date for prediction
+- Automatically use the selected date's year, month, and day
+- Predict a weather category using the trained model
+- Access the app through a browser
+
+## 🛠️ Technologies Used
+
+| Icon | Technology |
+|---|---|
+| 🐍 | Python |
+| 🐼 | Pandas |
+| 🔢 | NumPy |
+| 📊 | Matplotlib / Seaborn |
+| 🤖 | Scikit-learn |
+| 📦 | Joblib |
+| 🌐 | Streamlit |
+
+## 📂 Project Files
+
+- `app.py` — Streamlit application
+- `weather_prediction_model.pkl` — saved trained model
+- `requirements.txt` — Python dependencies
+- `cleaning.ipynb` — data cleaning work
+- `EDA.ipynb` — exploratory data analysis
+- `feature_selection.ipynb` — feature selection work
+- `model_selection.ipynb` — model training and selection notebook
+- `seattle-weather.csv` — dataset, if committed to the repository
 
 ## ▶️ Run Locally
 
-1. Clone this repository:
+1. Clone the repository:
 
    ```bash
    git clone https://github.com/artimore614/Weather-Prediction.git
@@ -55,7 +82,7 @@ Weather-Prediction/
    pip install -r requirements.txt
    ```
 
-3. Start the Streamlit app:
+3. Run the app:
 
    ```bash
    streamlit run app.py
@@ -63,15 +90,24 @@ Weather-Prediction/
 
 ## ☁️ Deployment
 
-This project is configured for Streamlit Community Cloud.
+This project is deployed using **Streamlit Community Cloud**.
 
-- **Repository:** [artimore614/Weather-Prediction](https://github.com/artimore614/Weather-Prediction)
+- **GitHub Repository:** [Weather-Prediction](https://github.com/artimore614/Weather-Prediction)
 - **Branch:** `main`
-- **Main file:** `app.py`
+- **App file:** `app.py`
+
+> **Note:** Predictions are based on user-entered values and the saved model. The app does not fetch live weather observations or real-time forecasts.
+
+---
 
 ## 👩‍💻 Author
 
 **Arti More**
 
-- GitHub: [@artimore614](https://github.com/artimore614)
-- LinkedIn: [Arti More](https://www.linkedin.com/in/arti-more-158b1734a)
+📊 Aspiring Data Scientist | 🤖 Machine Learning Enthusiast
+
+🔗 [GitHub Profile](https://github.com/artimore614) | [LinkedIn](https://www.linkedin.com/in/arti-more-158b1734a)
+
+---
+
+<p align="center">⭐ If you like this project, don't forget to give it a star! ⭐</p>
