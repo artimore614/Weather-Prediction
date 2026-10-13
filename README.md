@@ -1,42 +1,44 @@
-# 🌦️ Weather Prediction using Machine Learning
+# 🌦️ Seattle Weather Prediction
 
-A Data Science and Machine Learning project built using the Seattle Weather dataset. The project follows an end-to-end workflow including data cleaning, exploratory data analysis (EDA), feature selection, and model selection.
+A machine-learning Streamlit app that predicts a weather category from user-entered Seattle weather measurements.
 
-## 🚀 Project Workflow
+## Live App
+After deployment, add your Streamlit Community Cloud URL here.
 
-1. 🧹 Data Cleaning
-2. 📊 Exploratory Data Analysis (EDA)
-3. 🎯 Feature Selection
-4. 🤖 Model Selection
-5. 🌦️ Weather Prediction
+## Features
+- Enter precipitation, maximum/minimum temperature, and wind speed
+- Choose a date for the prediction
+- Predict a weather category using the trained model
+- Simple, interactive Streamlit interface
 
-## 📁 Project Files
+## Project Files
+- `app.py` — Streamlit application
+- `weather_prediction_model.pkl` — trained model
+- `requirements.txt` — Python dependencies
+- `cleaning.ipynb`, `EDA.ipynb`, `feature_selection.ipynb`, `model_selection.ipynb` — project notebooks
+- `seattle-weather.csv` — dataset (if included in this repository)
 
-- `cleaning.ipynb` — Data cleaning and preprocessing
-- `EDA.ipynb` — Exploratory data analysis and visualization
-- `feature_selection.ipynb` — Feature selection
-- `model_selection.ipynb` — Model evaluation and selection
-- `seattle-weather.csv` — Original dataset
-- `cleaned_seattle_weather.csv` — Cleaned dataset
-- `weather_prediction_model.pkl` — Trained machine learning model
+## Run Locally
+Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-## 🛠️ Technologies Used
+Start the app:
+```bash
+streamlit run app.py
+```
 
-- Python 🐍
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Scikit-learn
-- Machine Learning
+## Deploy on Streamlit Community Cloud
+1. Open https://share.streamlit.io/ and sign in with GitHub.
+2. Select **Create app**.
+3. Choose repository `artimore614/Weather-Prediction`, branch `main`, and main file `app.py`.
+4. Click **Deploy** and wait for the app to build.
 
-## 📌 Key Skills Demonstrated
+The app uses a trained model and user-provided inputs; it does not fetch live weather forecasts.
 
-`Data Cleaning` • `EDA` • `Data Visualization` • `Feature Selection` • `Machine Learning` • `Model Evaluation`
+## Technologies
+Python · Pandas · Scikit-learn · Joblib · Streamlit
 
----
-
-### 👩‍💻 Author
-**Arti More**
-
-🔗 [GitHub Profile](https://github.com/artimore614) | [LinkedIn](https://www.linkedin.com/in/arti-more-158b1734a)
+## Author
+**Arti More** · [GitHub](https://github.com/artimore614) · [LinkedIn](https://www.linkedin.com/in/arti-more-158b1734a)
