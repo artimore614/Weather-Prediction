@@ -27,6 +27,103 @@ div.stButton > button { width:100%; border-radius:12px; padding:.7rem 1rem; font
 </style>
 """, unsafe_allow_html=True)
 
+
+# --- Login and signup (passwords are stored as salted hashes) ---
+import sqlite3
+import hashlib
+import hmac
+import secrets
+
+DB_PATH = "weather_users.db"
+
+def init_user_db():
+    with sqlite3.connect(DB_PATH) as conn:
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS users (
+                username TEXT PRIMARY KEY,
+                salt TEXT NOT NULL,
+                password_hash TEXT NOT NULL
+            )
+        """)
+
+def hash_password(password, salt):
+    return hashlib.pbkdf2_hmac(
+        "sha256", password.encode("utf-8"), bytes.fromhex(salt), 200_000
+    ).hex()
+
+def create_user(username, password):
+    username = username.strip()
+    if len(username) < 3:
+        return False, "Username must contain at least 3 characters."
+    if len(password) < 8:
+        return False, "Password must contain at least 8 characters."
+    salt = secrets.token_bytes(16).hex()
+    password_hash = hash_password(password, salt)
+    try:
+        with sqlite3.connect(DB_PATH) as conn:
+            conn.execute(
+                "INSERT INTO users (username, salt, password_hash) VALUES (?, ?, ?)",
+                (username, salt, password_hash),
+            )
+        return True, "Account created. You can now log in."
+    except sqlite3.IntegrityError:
+        return False, "That username already exists. Please choose another."
+
+def verify_user(username, password):
+    with sqlite3.connect(DB_PATH) as conn:
+        row = conn.execute(
+            "SELECT salt, password_hash FROM users WHERE username = ?",
+            (username.strip(),),
+        ).fetchone()
+    if row is None:
+        return False
+    salt, saved_hash = row
+    return hmac.compare_digest(hash_password(password, salt), saved_hash)
+
+init_user_db()
+
+if "weather_user" not in st.session_state:
+    st.session_state.weather_user = None
+
+if not st.session_state.weather_user:
+    st.markdown("""
+    <div class="hero">
+      <h1>🌦️ Seattle Weather Prediction</h1>
+      <p>Sign in or create an account to access the weather prediction dashboard.</p>
+    </div>
+    """, unsafe_allow_html=True)
+    login_tab, signup_tab = st.tabs(["🔐 Login", "✨ Sign Up"])
+
+    with login_tab:
+        with st.form("login_form"):
+            login_username = st.text_input("Username", key="login_username")
+            login_password = st.text_input("Password", type="password", key="login_password")
+            login_submit = st.form_submit_button("Login", type="primary", use_container_width=True)
+        if login_submit:
+            if verify_user(login_username, login_password):
+                st.session_state.weather_user = login_username.strip()
+                st.rerun()
+            else:
+                st.error("Incorrect username or password.")
+
+    with signup_tab:
+        with st.form("signup_form"):
+            signup_username = st.text_input("Choose a username", key="signup_username")
+            signup_password = st.text_input("Create password (minimum 8 characters)", type="password", key="signup_password")
+            signup_confirm = st.text_input("Confirm password", type="password", key="signup_confirm")
+            signup_submit = st.form_submit_button("Create Account", type="primary", use_container_width=True)
+        if signup_submit:
+            if signup_password != signup_confirm:
+                st.error("Passwords do not match.")
+            else:
+                created, message = create_user(signup_username, signup_password)
+                if created:
+                    st.success(message)
+                else:
+                    st.error(message)
+    st.info("Your password is stored as a salted hash, not as plain text.")
+    st.stop()
+
 @st.cache_resource
 def load_model():
     saved = joblib.load("weather_prediction_model.pkl")
